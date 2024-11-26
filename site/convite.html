@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Convite</title>
+	<style>
+		/* Estilos para a imagem rolando */
+        .container {
+            width: 100%;
+            height: 100vh; /* A altura ocupa toda a altura da tela */
+            overflow: hidden; /* Esconde a parte da imagem que sai do container */
+            position: relative;
+        }
+
+        .imagem {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; /* A imagem vai ocupar toda a largura da tela */
+            animation: rolar 10s linear infinite; /* Animação contínua */
+        }
+
+        /* Definindo a animação da imagem rolando */
+        @keyframes rolar {
+            0% {
+                top: 0;
+            }
+            100% {
+                top: -100%; /* Faz com que a imagem suba totalmente */
+            }
+        }
+
+        /* Estilos para os brilhos dourados em forma de estrela */
+        .brilho {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #FFD700; /* Cor dourada */
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); /* Forma de estrela */
+            animation: brilhar 3s infinite;
+            opacity: 0.9;
+        }
+
+        /* Animação para os brilhos dourados */
+        @keyframes brilhar {
+            0% {
+                transform: scale(0);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0.8;
+            }
+        }
+
+	</style>
+</head>
+<body>
+<div class="container">
+	<!-- Imagem rolando -->
+	<img src="C:\Users\Pedro\Documents\site\backconvite.png" alt="Imagem Rolando" class="imagem">
+
+	<!-- Brilhos aleatórios em forma de estrela dourada -->
+	<script>
+		function criarBrilho() {
+            const brilho = document.createElement('div');
+            const tamanho = Math.random() * 20 + 15; // Tamanho do brilho entre 15px e 35px
+            brilho.classList.add('brilho');
+            brilho.style.width = `${tamanho}px`;
+            brilho.style.height = `${tamanho}px`;
+            brilho.style.backgroundColor = `rgba(255, 215, 0, ${Math.random() * 0.7 + 0.3})`; // Cor dourada com opacidade aleatória
+            brilho.style.top = `${Math.random() * 100}vh`; // Posição vertical aleatória
+            brilho.style.left = `${Math.random() * 100}vw`; // Posição horizontal aleatória
+            brilho.style.animationDuration = `${Math.random() * 2 + 3}s`; // Duração da animação aleatória
+            document.body.appendChild(brilho);
+
+            // Remove o brilho depois que a animação acaba
+            setTimeout(() => {
+                brilho.remove();
+            }, 4000); // Remove depois de 4 segundos
+        }
+
+        // Cria brilhos aleatórios a cada 500ms
+        setInterval(criarBrilho, 500);
+	</script>
+</div>
+</body>
+</html>
